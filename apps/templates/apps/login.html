@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form class="box" action="/" method="post">
+	{% csrf_token %}
+	<h3 class="box-heading" style="margin-bottom:10px;">자동연장</h3>
+	<p style="font-size:11px;color:green">비밀번호는 암호화 되어 안전하게 관리됩니다.</p>
+	{% if error %}<p class="error">Error: {{ error }}</p>{% endif %}
+	{% if flush %}<p class="success" style="margin-bottom:30px;">{{ request.session.user_num }} : {{ flush }}</p>{% endif %}
+	{% if not request.session.user_num %}
+	<input id="user_num" name="user_num" type="text" class="input-block-level" placeholder="학번" />
+	<input id="password" name="password" type="password" class="input-block-level" placeholder="비밀번호" />
+	<button style="width:49%;margin-right:2%;float:left" class="btn btn-large btn-primary" type="submit">로그인</button>
+	<button id="join" style="width:49%;float:left;" class="btn btn-large btn-primary" type="button">회원가입</button>
+	{% else %}
+	<button id="logout" style="width:49%;float:left;margin-right:2%;" class="btn btn-large btn-primary" type="button">로그아웃</button>
+	<button id="do_delay" style="width:49%;float:left;" class="btn btn-large btn-primary" type="button">{% if not request.session.is_delay %}자동연장 하기{% else %}그만하기{% endif %}</button>
+	{% endif %}
+	<div style="clear:both;height:20px;"></div>
+	<a href="http://jaram.org"><p style="float:left;margin:0">By. Jaram.org</p></a>
+	<a href="mailto:ok7217@gmail.com"><p style="float:right;margin:0">ok7217@gmail.com</p></a>
+  </form>
+{% endblock %}

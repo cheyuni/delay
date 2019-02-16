@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+  <form action="/apps/do_delay" class="box" method="post">
+	  <div style="float:right"><a href="/apps/do_logout">로그아웃</a> | <a id="do_delay" href="/do_delay">{% if is_delay %}자동연장 하기{% else %}그만하기{% endif %}</a></div>
+      <dl style="clear:both">
+          <dt>Title:</dt>
+          <dd><input type="text" size="30" name="title"></dd>
+          <dt>Text:</dt>
+          <dd><textarea name="text" rows="5" cols="40"></textarea></dd>
+          <dd>
+			  <button style="width:120px" class="btn btn-large btn-primary" type="submit">share</button>
+		  </dd>
+      </dl>
+  </form>
+  {% else %}
+	<script>
+		$('document').ready(function(){location.href="/"}
+	</script>
+  {% endif %}
+{% endblock %}

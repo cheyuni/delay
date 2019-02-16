@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form class="box" action="/join" method = "post">
+	{% csrf_token %}
+	<h3 class="box-heading" >회원가입</h3>
+	{% if error %}<p class = "error">Error: {{ error }}{% endif %}
+	<input id="user_num" name="user_num" type="text" class="input-block-level" placeholder="학번" />
+	<input id="password" name="password" type="password" class="input-block-level" placeholder="비밀번호" />
+	<input id="mail" name="mail" type="text" class="input-block-level" placeholder="메일주소" />
+
+	{% if not session.logged_in %}
+	<button id="join" style="width:49%;float:left;margin-right:2%" class="btn btn-large btn-primary" type="submit">가입하기</button>
+	<button id="login" style="width:49%;float:left;" class="btn btn-large btn-primary" type="button">로그인창</button>
+	{% else %}
+	<button style="" class="btn btn-large btn-primary" type="button">나가기</button>
+	{% endif %}
+	<div style="clear:both;height:20px;"></div>
+	<a href="http://jaram.org"><p style="float:left;margin:0">By. Jaram.org</p></a>
+	<a href="mailto:ok7217@gmail.com"><p style="float:right;margin:0">ok7217@gmail.com</p></a>
+  </form>
+{% endblock %}
